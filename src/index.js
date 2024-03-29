@@ -1,6 +1,7 @@
 import { apiKey } from "./api-key";
 import { JSONtoCurrentWeatherClass } from "./currentWeather";
 import { JSONtoForecastWeatherClass } from "./forecastWeather";
+import "./style.css";
 
 async function getWeather() {
   try {
