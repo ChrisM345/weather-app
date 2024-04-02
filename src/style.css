@@ -3,3 +3,7 @@
   border: solid purple;
   grid-template-columns: repeat(4, 200px);
 }
+
+.forecast-day {
+  border: solid green;
+}

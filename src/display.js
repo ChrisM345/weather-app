@@ -1,12 +1,16 @@
-const currentWeatherDiv = document.querySelector(".current");
+import { getCurrentWeatherData } from "./currentWeather";
+import { getForecastWeatherData } from "./forecastWeather";
 
-function displayCurrentWeather(data) {
-  console.log(data);
+const currentWeatherDiv = document.querySelector(".current");
+const forecastWeatherDiv = document.querySelector(".forecast");
+
+function displayCurrentWeather() {
+  const data = getCurrentWeatherData()[0];
   const temp = `Current Temp ${data.temp_f}\u00B0F`;
   const date = data.last_updated.split(" ")[0];
   const condition = data.condition;
   const icon = data.icon;
-  const precip_in = data.precip_in;
+  // const precip_in = data.precip_in;
 
   const wind_dir = data.wind_dir;
   const wind_mph = data.wind_mph;
@@ -59,4 +63,53 @@ function displayCurrentWeather(data) {
   currentWeatherDiv.append(detailDiv);
 }
 
-export { displayCurrentWeather };
+function displayForecastWeather() {
+  const data = getForecastWeatherData();
+  console.log(data);
+  data.forEach((weatherData) => {
+    const dayDataDiv = document.createElement("div");
+    dayDataDiv.className = "forecast-day";
+    console.log(weatherData);
+    const date = weatherData.date;
+    const avghumidity = weatherData.avghumidity;
+    const avgtemp_f = weatherData.avgtemp_f;
+    const avgvis_miles = weatherData.avgvis_miles;
+    const condition = weatherData.condition;
+    const icon = weatherData.icon;
+
+    const tempLine = document.createElement("p");
+    tempLine.className = "forecast-temp";
+    tempLine.innerText = avgtemp_f;
+
+    const dateLine = document.createElement("p");
+    dateLine.className = "forecast-date";
+    dateLine.innerText = date;
+
+    const conditionLine = document.createElement("p");
+    conditionLine.className = "forecast-condition";
+    conditionLine.innerText = condition;
+    const iconImage = document.createElement("img");
+    iconImage.src = icon;
+
+    dayDataDiv.append(tempLine);
+    dayDataDiv.append(dateLine);
+    dayDataDiv.append(conditionLine);
+    dayDataDiv.append(iconImage);
+
+    const detailDiv = document.createElement("div");
+    detailDiv.className = "forecast-details";
+
+    const humiditySection = document.createElement("p");
+    humiditySection.innerText = `Humidity\n${avghumidity}`;
+    const visibilitySection = document.createElement("p");
+    visibilitySection.innerText = `Visibility\n${avgvis_miles} miles`;
+
+    detailDiv.append(humiditySection);
+    detailDiv.append(visibilitySection);
+    dayDataDiv.append(detailDiv);
+
+    forecastWeatherDiv.append(dayDataDiv);
+  });
+}
+
+export { displayCurrentWeather, displayForecastWeather };

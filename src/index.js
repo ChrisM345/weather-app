@@ -1,6 +1,8 @@
 import { apiKey } from "./api-key";
 import { JSONtoCurrentWeatherClass } from "./currentWeather";
 import { JSONtoForecastWeatherClass } from "./forecastWeather";
+import { displayCurrentWeather } from "./display";
+import { displayForecastWeather } from "./display";
 import "./style.css";
 
 async function getWeather() {
@@ -12,6 +14,8 @@ async function getWeather() {
     const weatherData = await response.json();
     JSONtoCurrentWeatherClass(weatherData.current);
     JSONtoForecastWeatherClass(weatherData.forecast);
+    displayCurrentWeather();
+    displayForecastWeather();
   } catch (error) {
     console.log(error);
   }

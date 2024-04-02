@@ -1,5 +1,3 @@
-import { displayCurrentWeather } from "./display";
-
 const currentWeatherData = [];
 
 class CurrentWeather {
@@ -39,15 +37,14 @@ function createCurrentWeatherObject(data) {
     data.wind_mph
   );
   weather.addCurrentWeatherData();
-  displayCurrentWeather(weather);
 }
 
 function getCurrentWeatherData() {
-  console.log(currentWeatherData);
+  return currentWeatherData;
 }
 
 function JSONtoCurrentWeatherClass(currentData) {
   createCurrentWeatherObject(currentData);
 }
 
-export { JSONtoCurrentWeatherClass };
+export { JSONtoCurrentWeatherClass, getCurrentWeatherData };

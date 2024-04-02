@@ -58,7 +58,9 @@ function createForecastWeatherObject(data) {
   weather.addForecastWeatherData();
 }
 
-function getForecastWeatherData() {}
+function getForecastWeatherData() {
+  return forecastWeatherData;
+}
 
 function JSONtoForecastWeatherClass(forecastData) {
   for (let i = 0; i < forecastData.forecastday.length; i++) {
@@ -67,4 +69,4 @@ function JSONtoForecastWeatherClass(forecastData) {
   //   createForecastWeatherObject(forecastData);
 }
 
-export { JSONtoForecastWeatherClass };
+export { JSONtoForecastWeatherClass, getForecastWeatherData };
