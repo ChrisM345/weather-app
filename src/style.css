@@ -48,3 +48,8 @@ p {
   align-items: center;
   border: solid black;
 }
+
+.forecast-day:nth-child(2) {
+  border-left: 0;
+  border-right: 0;
+}
