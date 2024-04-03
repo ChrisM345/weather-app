@@ -5,6 +5,7 @@ const currentWeatherDiv = document.querySelector(".current");
 const forecastWeatherDiv = document.querySelector(".forecast");
 
 function displayCurrentWeather() {
+  currentWeatherDiv.innerHTML = "";
   const data = getCurrentWeatherData()[0];
   const temp = `Current Temp ${data.temp_f}\u00B0F`;
   const date = data.last_updated.split(" ")[0];
@@ -64,12 +65,11 @@ function displayCurrentWeather() {
 }
 
 function displayForecastWeather() {
+  forecastWeatherDiv.innerHTML = "";
   const data = getForecastWeatherData();
-  console.log(data);
   data.forEach((weatherData) => {
     const dayDataDiv = document.createElement("div");
     dayDataDiv.className = "forecast-day";
-    console.log(weatherData);
     const date = weatherData.date;
     const avghumidity = weatherData.avghumidity;
     const avgtemp_f = weatherData.avgtemp_f;
@@ -79,7 +79,7 @@ function displayForecastWeather() {
 
     const tempLine = document.createElement("p");
     tempLine.className = "forecast-temp";
-    tempLine.innerText = avgtemp_f;
+    tempLine.innerText = `Average Temp: ${avgtemp_f}`;
 
     const dateLine = document.createElement("p");
     dateLine.className = "forecast-date";
@@ -100,9 +100,9 @@ function displayForecastWeather() {
     detailDiv.className = "forecast-details";
 
     const humiditySection = document.createElement("p");
-    humiditySection.innerText = `Humidity\n${avghumidity}`;
+    humiditySection.innerText = `Humidity: ${avghumidity}`;
     const visibilitySection = document.createElement("p");
-    visibilitySection.innerText = `Visibility\n${avgvis_miles} miles`;
+    visibilitySection.innerText = `Visibility: ${avgvis_miles} miles`;
 
     detailDiv.append(humiditySection);
     detailDiv.append(visibilitySection);

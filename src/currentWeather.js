@@ -44,6 +44,7 @@ function getCurrentWeatherData() {
 }
 
 function JSONtoCurrentWeatherClass(currentData) {
+  currentWeatherData.length = 0;
   createCurrentWeatherObject(currentData);
 }
 

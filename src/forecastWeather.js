@@ -63,6 +63,7 @@ function getForecastWeatherData() {
 }
 
 function JSONtoForecastWeatherClass(forecastData) {
+  forecastWeatherData.length = 0;
   for (let i = 0; i < forecastData.forecastday.length; i++) {
     createForecastWeatherObject(forecastData.forecastday[i]);
   }
